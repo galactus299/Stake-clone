@@ -2,26 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.bg-img {
+    background-image: url("https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg");
+    background-size: cover;
+    background-position: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.bg-stake-ft {
+    background-image: url("https://stake.com/_app/immutable/assets/abstract-bg.71bdcaae.svg");
+    background-size:contain;
+    background-position: center;
+    display: block;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.bg-color {
+    background-color: rgb(15, 33, 46);
 }
+
+.bg-color-side {
+    background-color: rgba(15, 33, 46, 0.13);
+    opacity: revert;
+}
+
+.bg-body {
+    background-color: rgba(10, 25, 30);
+}
+
+.display-contents-custom {
+    display: contents;
+}
+
