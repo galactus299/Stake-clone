@@ -1,4 +1,12 @@
+const GetData =async() =>{
+    return 0;
+}
+
+
+
 export default function Infotable  (){
+
+    GetData();
    return(
        <div>
 
