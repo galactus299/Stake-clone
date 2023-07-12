@@ -25,11 +25,24 @@ export async function getAll():Promise<Bets[]>  {
 }
 
 export async function getAllRace():Promise<Bets[]>  {
-    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/data.json").then((resp) => resp.json());
+    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/racedata.json").then((resp) => resp.json());
+}
+export async function getAllbet():Promise<Bets[]>  {
+    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/racedata.json").then((resp) => resp.json());
 }
 
-export async function ClicklRace( setbets:React.Dispatch<React.SetStateAction<any>>)  {
-      getAllRace().then((data)=>{setbets(data)})
+export async function ClicklRace(setbets:Function,)  {
+      setbets([])
+      await  getAllRace().then((data)=>{setbets(data)})
+}
+
+export async function ClickCasino(setbets:Function) {
+    setbets([])
+    await  getAll().then((data)=>{setbets(data)})
+}
+export async function ClicklBet(setbets:Function,)  {
+    setbets([])
+    await  getAllRace().then((data)=>{setbets(data)})
 }
 
 
@@ -38,7 +51,7 @@ export async function ClicklRace( setbets:React.Dispatch<React.SetStateAction<an
 
 
 export default function Infotable  (){
-    const [bets, setbets]=useState <Bets[]>([])
+    const [bets, setbets  ]=useState <Bets[]>([])
     useEffect(()=>{
         getAll().then((data)=>{setbets(data)})
     },[]);
@@ -48,7 +61,7 @@ export default function Infotable  (){
    return (
        <div>
 
-    <GroupButton></GroupButton>
+    <GroupButton setbets={setbets}></GroupButton>
 
 
            <div>
