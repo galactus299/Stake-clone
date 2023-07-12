@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {ClicklRace ,ClickCasino} from "@/components/table";
+import {ClicklRace ,ClickCasino ,ClicklBet} from "@/components/table";
 export default function GroupButton({setbets}:any){
     const [activeButton, setActiveButton] = useState(null);
 
@@ -17,7 +17,10 @@ export default function GroupButton({setbets}:any){
                 className={activeButton === 1 ? "btn rounded-full btn-active bg-gray-500" : "btn rounded-full bg-transparent"}   >Casino bets</button>
             <button onClick={() => {handleClick(2) ; ClicklRace(setbets)}}
                     className={activeButton === 2 ? "btn rounded-full btn-active bg-gray-500" : "btn rounded-full bg-transparent"}   >Sports bet</button>
-            <button onClick={() => handleClick(3)}
+            <button onClick={() => {
+                handleClick(3);
+                ClicklBet(setbets)
+            }}
                     className={activeButton === 3 ? "btn rounded-full btn-active bg-gray-500" : "btn rounded-full bg-transparent"}   >Race Leaders</button>
     </div>
     )

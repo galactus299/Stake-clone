@@ -28,7 +28,7 @@ export async function getAllRace():Promise<Bets[]>  {
     return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/racedata.json").then((resp) => resp.json());
 }
 export async function getAllbet():Promise<Bets[]>  {
-    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/racedata.json").then((resp) => resp.json());
+    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/data3.json").then((resp) => resp.json());
 }
 
 export async function ClicklRace(setbets:Function,)  {
@@ -42,7 +42,7 @@ export async function ClickCasino(setbets:Function) {
 }
 export async function ClicklBet(setbets:Function,)  {
     setbets([])
-    await  getAllRace().then((data)=>{setbets(data)})
+    await  getAllbet().then((data)=>{setbets(data)})
 }
 
 
