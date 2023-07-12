@@ -1,22 +1,55 @@
-const GetData =async() =>{
-    return 0;
+
+'use client'
+
+import React, {useState,useEffect} from "react";
+import GroupButton from "@/components/button";
+import * as async_hooks from "async_hooks";
+
+
+
+export type Bets ={
+    "Game": string,
+    "User": string,
+    "Time": string,
+    "Bet Amount": any,
+    "Multiplier": string,
+    "Payout": any
 }
 
 
 
-export default function Infotable  (){
 
-    GetData();
-   return(
+
+export async function getAll():Promise<Bets[]>  {
+    return fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/data.json").then((resp) => resp.json());
+}
+
+export async function getAllRace():Promise<Bets[]>  {
+    return  fetch("https://raw.githubusercontent.com/galactus299/Stake-clone/main/public/data.json").then((resp) => resp.json());
+}
+
+export async function ClicklRace( setbets:React.Dispatch<React.SetStateAction<any>>)  {
+      getAllRace().then((data)=>{setbets(data)})
+}
+
+
+
+
+
+
+export default function Infotable  (){
+    const [bets, setbets]=useState <Bets[]>([])
+    useEffect(()=>{
+        getAll().then((data)=>{setbets(data)})
+    },[]);
+
+    console.log(bets)
+
+   return (
        <div>
 
+    <GroupButton></GroupButton>
 
-               <div className="  rounded-full  bg-color inline-block py-2 my-4 al ">
-
-                   <button className="btn rounded-full btn-active bg-gray-500">Casino bets</button>
-                   <button className="btn rounded-full bg-transparent">Sports bet</button>
-                   <button className="btn rounded-full bg-transparent "><span className="flex items-center justify-center text-center">Race Leaderboards <div className="text-green-600">.</div></span></button>
-               </div>
 
            <div>
                <div className="overflow-x-auto">
@@ -26,32 +59,36 @@ export default function Infotable  (){
                        <tr>
                            <th>Game</th>
                            <th>User</th>
+                           <th>Time</th>
+                           <th>Bet Amount</th>
                            <th>Multiplier</th>
                            <th>Payout</th>
+
                        </tr>
                        </thead>
                        <tbody>
-                       {/* row 1 */}
-                       <tr className="bg-base-200">
-                           <th>black</th>
-                           <td>Cy Ganderton</td>
-                           <td>Quality Control Specialist</td>
-                           <td>Blue</td>
-                       </tr>
-                       {/* row 2 */}
-                       <tr>
-                           <th>red</th>
-                           <td>Hart Hagerty</td>
-                           <td>Desktop Support Technician</td>
-                           <td>Purple</td>
-                       </tr>
-                       {/* row 3 */}
-                       <tr>
-                           <th>3</th>
-                           <td>Brice Swyre</td>
-                           <td>Tax Accountant</td>
-                           <td>Red</td>
-                       </tr>
+                       { bets.map((p:Bets,index=0) => (
+
+
+                           <tr className={`${
+                               index % 2 === 0 ? "bg-base-200" : "bg-base-100" 
+                           } p-4`} key={p.User}>
+                               <th>{p.Game}</th>
+                               <td>{p.User}</td>
+                               <td>{p.Time}</td>
+                               <td>{p["Bet Amount"]}</td>
+                               <td>{p.Multiplier}</td>
+                               <td>{p["Bet Amount"]}</td>
+                               <td className={"hidden"}>{index+1}</td>
+
+
+
+                           </tr>
+
+
+                       ))}
+
+
                        </tbody>
                    </table>
                </div>
